@@ -4,6 +4,13 @@ import java.time.LocalDate;
 
 public class ForumImpl implements Forum {
 
+    Post posts[];
+    int size;
+
+    public ForumImpl() {
+        this.size = 0;
+    }
+
     @Override
     public boolean addPost(Post post) {
         return false;
@@ -37,5 +44,14 @@ public class ForumImpl implements Forum {
     @Override
     public int size() {
         return 0;
+    }
+
+    @Override
+    public void printPosts() {
+        for (int i = 0; i < posts.length; i++) {
+            System.out.println(posts[i]);
+
+        }
+
     }
 }
