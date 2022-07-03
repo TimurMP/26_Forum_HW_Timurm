@@ -1,6 +1,8 @@
 package telran.forum.model;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.LocalTime;
 import java.util.Arrays;
 import java.util.function.Predicate;
 
@@ -73,13 +75,15 @@ public class ForumImpl implements Forum {
 
     @Override
     public Post[] getPostsByAuthor(String author) {
-        return  findPostsByPredicate(post -> post.getAuthor() == author);
+        return  findPostsByPredicate(post -> post.getAuthor() == author, posts);
 
     }
 
     @Override
     public Post[] getPostsByAuthor(String author, LocalDate dateFrom, LocalDate dateTo) {
-        return new Post[0];
+        Post[] res = getPostsByAuthor(author);
+        return findPostsByPredicate(post -> post.getDate().isAfter(dateFrom.atStartOfDay()) &&
+                post.getDate().isBefore(LocalDateTime.of(dateTo, LocalTime.MAX)), res);
     }
 
     @Override
@@ -97,7 +101,7 @@ public class ForumImpl implements Forum {
     }
 
 
-    private Post[] findPostsByPredicate(Predicate<Post> predicate) {
+    private Post[] findPostsByPredicate(Predicate<Post> predicate, Post[] arr) {
         Post[] res = new Post[size];
         int j = 0;
         for (int i = 0; i < posts.length; i++) {
