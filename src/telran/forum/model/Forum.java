@@ -1,2 +1,15 @@
-package telran.forum.model;public interface Forum {
+package telran.forum.model;
+
+import java.time.LocalDate;
+
+public interface Forum {
+
+    boolean addPost(Post post);
+    boolean removePost(int postId);
+    boolean updatePost(int postID, String newContent);
+    Post getPostById (int postId);
+    Post[] getPostsByAuthor(String author);
+    Post[] getPostsByAuthor(String author, LocalDate dateFrom, LocalDate dateTo);
+    int size();
+
 }
