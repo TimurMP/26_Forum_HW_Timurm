@@ -14,7 +14,6 @@ public class ForumImpl implements Forum {
 
     @Override
     public boolean addPost(Post post) {
-        //TODO: add verification
         if (getPostById(post.getPostId())!=null){
             return false;
         }
@@ -34,6 +33,18 @@ public class ForumImpl implements Forum {
 
     @Override
     public boolean removePost(int postId) {
+        Post pattern = new Post(null, postId, null,null);
+        for (int i = 0; i < posts.length; i++) {
+            if (pattern.equals(posts[i])){
+                Post[] postCopy = new Post[size-1];
+                System.arraycopy(posts, 0, postCopy,0, i);
+                System.arraycopy(posts, i+1, postCopy, i, postCopy.length-i);
+                size--;
+                posts = postCopy;
+                return true;
+            }
+        }
+
         return false;
     }
 

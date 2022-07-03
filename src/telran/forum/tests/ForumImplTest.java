@@ -44,6 +44,14 @@ class ForumImplTest {
 
     @Test
     void removePost() {
+        assertFalse(forum.removePost(10));
+        assertTrue(forum.removePost(3));
+        assertNull(forum.getPostById(3));
+        assertEquals(facebook.length-1, forum.size());
+
+
+        forum.printPosts();
+
     }
 
     @Test
