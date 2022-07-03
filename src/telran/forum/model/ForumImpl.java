@@ -14,7 +14,10 @@ public class ForumImpl implements Forum {
 
     @Override
     public boolean addPost(Post post) {
-        //TODO add verification
+        //TODO: add verification
+        if (getPostById(post.getPostId())!=null){
+            return false;
+        }
         int index =  Arrays.binarySearch(posts, 0, posts.length, post);
         index = index < 0 ? -index - 1 : index;
         Post[] postCopy = new Post[size+1];
@@ -26,7 +29,7 @@ public class ForumImpl implements Forum {
 
 
 
-        return false;
+        return true;
     }
 
     @Override
@@ -64,7 +67,7 @@ public class ForumImpl implements Forum {
 
     @Override
     public int size() {
-        return 0;
+        return size;
     }
 
     @Override

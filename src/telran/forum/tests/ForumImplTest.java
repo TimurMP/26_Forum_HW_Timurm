@@ -21,8 +21,11 @@ class ForumImplTest {
         facebook[2] = new Post("User3", 3, "Title3", "Hello3");
         facebook[3] = new Post("User4", 4, "Title4", "Hello4");
         facebook[4] = new Post("User5", 5, "Title5", "Hello5");
+
+
         for (int i = 0; i < facebook.length; i++) {
             forum.addPost(facebook[i]);
+
 
         }
 
@@ -30,7 +33,12 @@ class ForumImplTest {
 
     @Test
     void addPost() {
-//        forum.addPost(facebook[0]);
+        Post tester = new Post("User-Test", 6, "Test", "Bye");
+
+        assertTrue(forum.addPost(tester));
+        assertEquals(tester, forum.getPostById(6));
+        assertEquals(facebook.length+1, forum.size());
+        assertFalse(forum.addPost(tester));
         forum.printPosts();
     }
 
