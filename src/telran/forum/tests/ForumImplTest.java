@@ -50,6 +50,7 @@ class ForumImplTest {
         assertEquals(facebook.length-1, forum.size());
 
 
+
         forum.printPosts();
 
     }
