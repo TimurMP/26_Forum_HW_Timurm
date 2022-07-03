@@ -57,6 +57,10 @@ class ForumImplTest {
 
     @Test
     void updatePost() {
+        assertTrue(forum.updatePost(4, "This is an updated content"));
+        assertEquals("This is an updated content", forum.getPostById(4).getContent());
+        forum.printPosts();
+
     }
 
     @Test

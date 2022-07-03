@@ -5,7 +5,7 @@ import java.util.Arrays;
 
 public class ForumImpl implements Forum {
 
-    Post posts[];
+    Post[] posts;
     int size;
 
     public ForumImpl() {
@@ -50,7 +50,12 @@ public class ForumImpl implements Forum {
 
     @Override
     public boolean updatePost(int postID, String newContent) {
-        return false;
+        Post post = getPostById(postID);
+        if (post==null){
+            return false;
+        }
+        post.setContent(newContent);
+        return true;
     }
 
     @Override
