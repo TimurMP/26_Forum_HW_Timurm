@@ -30,6 +30,8 @@ class ForumImplTest {
 
     @Test
     void addPost() {
+//        forum.addPost(facebook[0]);
+        forum.printPosts();
     }
 
     @Test
@@ -42,6 +44,8 @@ class ForumImplTest {
 
     @Test
     void getPostById() {
+        assertEquals(facebook[2], forum.getPostById(3));
+        assertNull(forum.getPostById(10));
     }
 
     @Test

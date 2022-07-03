@@ -1,6 +1,7 @@
 package telran.forum.model;
 
 import java.time.LocalDate;
+import java.util.Arrays;
 
 public class ForumImpl implements Forum {
 
@@ -8,11 +9,23 @@ public class ForumImpl implements Forum {
     int size;
 
     public ForumImpl() {
-        this.size = 0;
+        posts = new Post[0];
     }
 
     @Override
     public boolean addPost(Post post) {
+        //TODO add verification
+        int index =  Arrays.binarySearch(posts, 0, posts.length, post);
+        index = index < 0 ? -index - 1 : index;
+        Post[] postCopy = new Post[size+1];
+        System.arraycopy(posts, 0, postCopy,0, index);
+        System.arraycopy(posts, index, postCopy, index+1, posts.length-index);
+        postCopy[index] = post;
+        size++;
+        posts = postCopy;
+
+
+
         return false;
     }
 
@@ -28,6 +41,14 @@ public class ForumImpl implements Forum {
 
     @Override
     public Post getPostById(int postId) {
+        Post pattern = new Post(null, postId, null,null);
+        for (int i = 0; i < posts.length; i++) {
+            if (posts[i].equals(pattern)){
+                System.out.println("Get Post by Id returned: "  + posts[i]);
+                return posts[i];
+            }
+
+        }
         return null;
     }
 
