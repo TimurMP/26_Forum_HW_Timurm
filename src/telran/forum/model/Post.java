@@ -3,7 +3,7 @@ package telran.forum.model;
 import java.time.LocalDateTime;
 import java.util.Objects;
 
-public class Post  implements Comparable<Post>{
+public class Post implements Comparable<Post> {
     String author;
     int postId;
     String title;
@@ -16,7 +16,7 @@ public class Post  implements Comparable<Post>{
         this.postId = postId;
         this.title = title;
         this.content = content;
-        this.date =  LocalDateTime.now();
+        this.date = LocalDateTime.now();
     }
 
     public String getAuthor() {
@@ -77,9 +77,8 @@ public class Post  implements Comparable<Post>{
         return Objects.hash(postId);
     }
 
-    public int addLike(){
+    public void addLike() {
         likes++;
-        return likes;
     }
 
     @Override
